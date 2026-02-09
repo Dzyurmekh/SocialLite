@@ -161,4 +161,38 @@
                     <input type="number" placeholder="Tiempo de preparación (minutos)" required>
                     <button type="submit" class="btn btn-primary">Publicar Receta</button>
                 </form>
-                <div id="recetasList" class
+                <div id="recetasList" class="admin-list"></div>
+            </div>
+            <div id="adminEntretenimiento" class="admin-content">
+                <h3>Agregar Contenido de Entretenimiento</h3>
+                <form id="formEntretenimiento" class="admin-form">
+                    <select required>
+                        <option value="">Tipo de contenido</option>
+                        <option value="humor">Humor</option>
+                        <option value="curiosidades">Curiosidades</option>
+                        <option value="videos">Videos</option>
+                    </select>
+                    <input type="text" placeholder="Título" required>
+                    <textarea placeholder="Contenido/Descripción" rows="4" required></textarea>
+                    <input type="text" placeholder="URL de imagen o video">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </form>
+                <div id="entretenimientoList" class="admin-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 SocialLite - Portal Digital. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Términos de Uso</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
