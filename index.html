@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialLite - Portal Digital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><i class="fas fa-newspaper"></i> SocialLite</div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link active" data-section="inicio">Inicio</a></li>
+                <li><a href="#noticias" class="nav-link" data-section="noticias">Noticias</a></li>
+                <li><a href="#recetas" class="nav-link" data-section="recetas">Recetas</a></li>
+                <li><a href="#juegos" class="nav-link" data-section="juegos">Juegos</a></li>
+                <li><a href="#entretenimiento" class="nav-link" data-section="entretenimiento">Entretenimiento</a></li>
+                <li><a href="#admin" class="nav-link" data-section="admin"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
 
+    <section id="inicio" class="section active">
+        <div class="hero">
+            <div class="container">
+                <h1>Bienvenido a SocialLite</h1>
+                <p>Tu portal digital de noticias, recetas, juegos y entretenimiento</p>
+                <button class="btn btn-primary" onclick="changeSection('noticias')">Explorar Contenido</button>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Lo Más Popular</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card" onclick="changeSection('noticias')">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Últimas Noticias</h3>
+                    <p>Mantente actualizado con las noticias más recientes</p>
+                </div>
+                <div class="highlight-card" onclick="changeSection('recetas')">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Recetas Deliciosas</h3>
+                    <p>Descubre nuevas recetas para sorprender a tu familia</p>
+                </div>
+                <div class="highlight-card" onclick="changeSection('juegos')">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Juegos Gratis</h3>
+                    <p>Juega Sudoku, crucigramas y trivias online</p>
+                </div>
+                <div class="highlight-card" onclick="changeSection('entretenimiento')">
+                    <i class="fas fa-laugh"></i>
+                    <h3>Entretenimiento</h3>
+                    <p>Humor, curiosidades y videos para tu diversión</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias" class="section">
+        <div class="container">
+            <h2 class="section-title">Últimas Noticias</h2>
+            <div class="search-bar">
+                <input type="text" id="searchNoticias" placeholder="Buscar noticias...">
+                <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="noticiasContainer" class="news-grid"></div>
+        </div>
+    </section>
+
+    <section id="recetas" class="section">
+        <div class="container">
+            <h2 class="section-title">Recetas</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-category="todas">Todas</button>
+                <button class="filter-btn" data-category="desayunos">Desayunos</button>
+                <button class="filter-btn" data-category="platos-principales">Platos Principales</button>
+                <button class="filter-btn" data-category="postres">Postres</button>
+                <button class="filter-btn" data-category="bebidas">Bebidas</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchRecetas" placeholder="Buscar recetas...">
+                <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="recetasContainer" class="recipe-grid"></div>
+        </div>
+    </section>
+
+    <section id="juegos" class="section">
+        <div class="container">
+            <h2 class="section-title">Juegos Online</h2>
+            <div class="games-selection">
+                <div class="game-option" onclick="iniciarSudoku()">
+                    <i class="fas fa-th"></i>
+                    <h3>Sudoku</h3>
+                    <p>Desafía tu mente con este clásico juego</p>
+                </div>
+                <div class="game-option" onclick="iniciarCrucigrama()">
+                    <i class="fas fa-crosshairs"></i>
+                    <h3>Crucigrama</h3>
+                    <p>Completa las palabras cruzadas</p>
+                </div>
+                <div class="game-option" onclick="iniciarTrivia()">
+                    <i class="fas fa-brain"></i>
+                    <h3>Trivia</h3>
+                    <p>Prueba tus conocimientos generales</p>
+                </div>
+            </div>
+            <div id="gameContainer" class="game-container" style="display: none;"></div>
+        </div>
+    </section>
+
+    <section id="entretenimiento" class="section">
+        <div class="container">
+            <h2 class="section-title">Entretenimiento</h2>
+            <div class="entertainment-tabs">
+                <button class="tab-btn active" data-tab="humor">Humor</button>
+                <button class="tab-btn" data-tab="curiosidades">Curiosidades</button>
+                <button class="tab-btn" data-tab="videos">Videos Cortos</button>
+            </div>
+            <div id="humorContent" class="tab-content active"></div>
+            <div id="curiosidadesContent" class="tab-content"></div>
+            <div id="videosContent" class="tab-content"></div>
+        </div>
+    </section>
+
+    <section id="admin" class="section">
+        <div class="container">
+            <h2 class="section-title">Panel de Administración</h2>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-admin-tab="noticias">Gestionar Noticias</button>
+                <button class="admin-tab" data-admin-tab="recetas">Gestionar Recetas</button>
+                <button class="admin-tab" data-admin-tab="entretenimiento">Gestionar Entretenimiento</button>
+            </div>
+            <div id="adminNoticias" class="admin-content active">
+                <h3>Agregar Nueva Noticia</h3>
+                <form id="formNoticia" class="admin-form">
+                    <input type="text" placeholder="Título de la noticia" required>
+                    <textarea placeholder="Contenido de la noticia" rows="5" required></textarea>
+                    <input type="text" placeholder="URL de la imagen">
+                    <input type="date" required>
+                    <button type="submit" class="btn btn-primary">Publicar Noticia</button>
+                </form>
+                <div id="noticiasList" class="admin-list"></div>
+            </div>
+            <div id="adminRecetas" class="admin-content">
+                <h3>Agregar Nueva Receta</h3>
+                <form id="formReceta" class="admin-form">
+                    <input type="text" placeholder="Nombre de la receta" required>
+                    <select required>
+                        <option value="">Categoría</option>
+                        <option value="desayunos">Desayunos</option>
+                        <option value="platos-principales">Platos Principales</option>
+                        <option value="postres">Postres</option>
+                        <option value="bebidas">Bebidas</option>
+                    </select>
+                    <textarea placeholder="Ingredientes (uno por línea)" rows="5" required></textarea>
+                    <textarea placeholder="Instrucciones" rows="5" required></textarea>
+                    <input type="text" placeholder="URL de la imagen">
+                    <input type="number" placeholder="Tiempo de preparación (minutos)" required>
+                    <button type="submit" class="btn btn-primary">Publicar Receta</button>
+                </form>
+                <div id="recetasList" class
